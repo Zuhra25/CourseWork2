@@ -2,8 +2,10 @@ package pro.sky.CourseWork2.service;
 
 import org.springframework.stereotype.Service;
 import pro.sky.CourseWork2.Question;
+import pro.sky.CourseWork2.exception.BAD_REQUEST;
 
-import java.util.Collection;
+import java.util.*;
+
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
     private final QuestionService questionService;
@@ -11,10 +13,15 @@ public class ExaminerServiceImpl implements ExaminerService {
     public ExaminerServiceImpl(QuestionService questionService, QuestionService questionService1) {
         this.questionService = questionService1;
     }
-//    Его задача:
-//    создать коллекцию и заполнить её с помощью вызова getRandomQuestion у QuestionService случайными вопросами.
 
     public Collection<Question> getQuestions(int amount) {
-        return questionService.getAll();
+        if (amount > questionService.getAll().size()) {
+            throw new BAD_REQUEST("в каталоге меньше вопросов");
+        }
+        Set<Question> setRandomQuestion = new HashSet<>();
+        while (setRandomQuestion.size() < amount) {
+            setRandomQuestion.add(questionService.getRandomQuestion());
+        }
+        return setRandomQuestion;
     }
 }

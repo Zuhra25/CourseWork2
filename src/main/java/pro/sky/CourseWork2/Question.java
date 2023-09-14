@@ -15,10 +15,6 @@ public class Question {
         return question;
     }
 
-    public String getQuestionText(){
-        return question;
-    }
-
     public String getAnswer() {
         return answer;
     }

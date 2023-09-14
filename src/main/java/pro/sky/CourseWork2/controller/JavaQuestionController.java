@@ -19,22 +19,21 @@ public class JavaQuestionController {
         this.questionService = questionService;
     }
 
-//Добавить: /exam/java/add?question=QuestionText&answer=QuestionAnswer”
+    //Добавить: /exam/java/add?question=QuestionText&answer=QuestionAnswer
     @GetMapping("/add")
-    public Question add(@RequestParam Question question) {
-        return questionService.add(question);
+    public Question add(@RequestParam String question, @RequestParam String answer) {
+        return questionService.add(question, answer);
     }
 
-//Удалить: “/exam/java/remove?question=QuestionText&answer=QuestionAnswer”
+    //Удалить: /exam/java/remove?question=QuestionText&answer=QuestionAnswer
     @GetMapping("/remove")
-    public Question remove(@RequestParam Question question) {
-        return questionService.remove(question);
+    public Question remove(@RequestParam String question, @RequestParam String answer) {
+        return questionService.remove(new Question(question, answer));
     }
 
-//Получить все вопросы: “/exam/java”
+    //Получить все вопросы: /exam/java
     @GetMapping()
-    public Collection<Question> getAll(){
+    public Collection<Question> getAll() {
         return questionService.getAll();
     }
-
 }
