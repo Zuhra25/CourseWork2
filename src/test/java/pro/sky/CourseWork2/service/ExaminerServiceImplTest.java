@@ -13,6 +13,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ExaminerServiceImplTest {
@@ -51,11 +52,14 @@ class ExaminerServiceImplTest {
     void getQuestions() {
         int actualSize = 3;
         int resultSize = 3;
+        when(javaQuestionServiceMock.getAll()).thenReturn(testCollection);
         Random random = new Random();
+
         Set<Question> setRandomQuestionTest = new HashSet<>();
         while (setRandomQuestionTest.size() < resultSize) {
-            int r = random.nextInt(testCollection.size());
-            setRandomQuestionTest.add(testCollection.get(r));
+            int r = random.nextInt(javaQuestionServiceMock.getAll().size());
+            when(javaQuestionServiceMock.getRandomQuestion()).thenReturn(testCollection.get(r));
+            setRandomQuestionTest.add(javaQuestionServiceMock.getRandomQuestion());
         }
         assertEquals(actualSize, setRandomQuestionTest.size());
     }
