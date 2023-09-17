@@ -19,24 +19,32 @@ class ExaminerServiceImplTest {
 
     @Mock
     private JavaQuestionService javaQuestionServiceMock;
+    @Mock
+    private MathQuestionService mathQuestionServiceMock;
     @InjectMocks
     private ExaminerServiceImpl examinerServiceMock;
 
     List<Question> testCollection = new ArrayList<>();
 
     @BeforeEach
-    void addTestSet() {
+    void addTestJavaQuestion() {
         testCollection.add(new Question("Вопрос6", "ответ6"));
         testCollection.add(new Question("Вопрос7", "ответ7"));
         testCollection.add(new Question("Вопрос8", "ответ8"));
-        testCollection.add(new Question("Вопрос9", "ответ9"));
+    }
+    @BeforeEach
+    void addTestJMathQuestion() {
+        testCollection.add(new Question("1 + 5 = ?", "ответ: 6"));
+        testCollection.add(new Question("2 + 5 = ?", "ответ: 7"));
+        testCollection.add(new Question("3 + 5 = ?", "ответ: 8"));
     }
 
     @Test
     void ejectionException() {
         assertEquals("в каталоге меньше вопросов",
                 assertThrows(BAD_REQUEST.class, () -> examinerServiceMock.getQuestions(javaQuestionServiceMock.getAll().size()+1)).getMessage());
-
+        assertEquals("в каталоге меньше вопросов",
+                assertThrows(BAD_REQUEST.class, () -> examinerServiceMock.getQuestions(mathQuestionServiceMock.getAll().size()+1)).getMessage());
     }
 
     @Test
