@@ -1,6 +1,5 @@
 package pro.sky.CourseWork2.service;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pro.sky.CourseWork2.Question;
 import pro.sky.CourseWork2.exception.BAD_REQUEST;
@@ -16,9 +15,6 @@ public class ExaminerServiceImpl implements ExaminerService {
         this.questionService = questionService;
         this.mathQuestionService = mathQuestionService;
     }
-//    public ExaminerServiceImpl(QuestionService questionService) {
-//        this.questionService = questionService;
-//    }
 
     public Collection<Question> getQuestions(int amount) {
         if (amount > questionService.getAll().size() || amount > mathQuestionService.getAll().size()) {

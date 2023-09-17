@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pro.sky.CourseWork2.Question;
 import pro.sky.CourseWork2.repositories.MathQuestionRepositoryImpl;
-import pro.sky.CourseWork2.repositories.QuestionRepository;
 
 import java.util.*;
+
 @Service
 @Qualifier("math")
 public class MathQuestionService implements QuestionService {
@@ -19,7 +19,6 @@ public class MathQuestionService implements QuestionService {
     @Override
     public Question add(String question, String answer) {
         return mathQuestionRepository.add(question, answer);
-
     }
 
     @Override
@@ -31,7 +30,6 @@ public class MathQuestionService implements QuestionService {
     public Question remove(Question question) {
         return mathQuestionRepository.remove(question);
     }
-
 
     @Override
     public Collection<Question> getAll() {

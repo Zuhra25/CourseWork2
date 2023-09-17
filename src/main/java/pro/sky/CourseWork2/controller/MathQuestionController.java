@@ -16,9 +16,6 @@ import java.util.Collection;
 public class MathQuestionController {
     private final QuestionService questionService;
 
-//    public MathQuestionController(@Qualifier("math") QuestionService questionService) {
-//        this.questionService = questionService;
-//    }
     public MathQuestionController(@Qualifier("math") QuestionService mathQuestionService) {
         this.questionService = mathQuestionService;
     }

@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 import pro.sky.CourseWork2.Question;
 
 import java.util.*;
+
 @Repository
 @Qualifier("math")
-public class MathQuestionRepositoryImpl implements QuestionRepository{
+public class MathQuestionRepositoryImpl implements QuestionRepository {
     Set<Question> MathQuestion = new HashSet<>();
 
     public MathQuestionRepositoryImpl() {
@@ -17,7 +18,6 @@ public class MathQuestionRepositoryImpl implements QuestionRepository{
         MathQuestion.add(new Question("4 + 5 = ?", "ответ: 9"));
         MathQuestion.add(new Question("5 + 5 = ?", "ответ: 10"));
     }
-
 
     public Question add(String question, String answer) {
         Question value = new Question(question, answer);
@@ -30,13 +30,10 @@ public class MathQuestionRepositoryImpl implements QuestionRepository{
         return question;
     }
 
-
     public Question remove(Question question) {
         MathQuestion.remove(question);
         return question;
     }
-
-
 
     public Collection<Question> getAll() {
         return MathQuestion;

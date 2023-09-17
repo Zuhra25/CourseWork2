@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import pro.sky.CourseWork2.Question;
 
 import java.util.*;
+
 @Repository
 @Primary
 public class QuestionRepositoryImpl implements QuestionRepository {
@@ -24,19 +25,15 @@ public class QuestionRepositoryImpl implements QuestionRepository {
         return value;
     }
 
-
     public Question add(Question question) {
         setQuestion.add(question);
         return question;
     }
 
-
     public Question remove(Question question) {
         setQuestion.remove(question);
         return question;
     }
-
-
 
     public Collection<Question> getAll() {
         return setQuestion;
